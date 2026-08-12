@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="theme-color" content="#070b14" />
+  <title>CalcMind — AI Calculator with History</title>
+
+  <!-- Fonts (fontsource CDN) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@latest/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@latest/500.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/space-grotesk@latest/700.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@latest/400.css" />
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fontsource/jetbrains-mono@latest/600.css" />
+
+  <!-- Separated CSS -->
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <!-- Animated background -->
+  <div class="blob b1"></div>
+  <div class="blob b2"></div>
+  <div class="blob b3"></div>
+
+  <div class="app">
+    <header class="topbar">
+      <div class="brand">
+        <div class="brand-logo">
+          <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round">
+            <path d="M12 3v18M3 12h18M5.6 5.6l12.8 12.8M18.4 5.6L5.6 18.4" opacity=".9"/>
+          </svg>
+        </div>
+        <div>
+          <h1>CalcMind</h1>
+          <p>Smart calculator · History · AI</p>
+        </div>
+      </div>
+      <div class="ai-pill"><span class="pulse"></span> Nova AI · online</div>
+    </header>
+
+    <main class="grid">
+      <!-- ============ CALCULATOR ============ -->
+      <section class="calc-card glass" aria-label="Calculator">
+        <div class="display">
+          <div class="display-row">
+            <span class="mode-tag">DEG</span>
+            <button id="copyResult" class="icon-btn" title="Copy result">
+              <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round">
+                <rect x="9" y="9" width="12" height="12" rx="2"/><path d="M5 15V5a2 2 0 0 1 2-2h10"/>
+              </svg>
+            </button>
+          </div>
+          <div id="smallExpr" class="small-expr">&nbsp;</div>
+          <div id="mainDisplay" class="main-display">0</div>
+        </div>
+
+        <div class="keypad" id="keypad">
+          <button class="key fn" data-key="C">AC</button>
+          <button class="key fn" data-key="back" aria-label="Backspace">⌫</button>
+          <button class="key fn" data-key="%">%</button>
+          <button class="key op" data-key="÷">÷</button>
+
+          <button class="key" data-key="7">7</button>
+          <button class="key" data-key="8">8</button>
+          <button class="key" data-key="9">9</button>
+          <button class="key op" data-key="×">×</button>
+
+          <button class="key" data-key="4">4</button>
+          <button class="key" data-key="5">5</button>
+          <button class="key" data-key="6">6</button>
+          <button class="key op" data-key="-">−</button>
+
+          <button class="key" data-key="1">1</button>
+          <button class="key" data-key="2">2</button>
+          <button class="key" data-key="3">3</button>
+          <button class="key op" data-key="+">+</button>
+
+          <button class="key fn" data-key="neg">±</button>
+          <button class="key" data-key="0">0</button>
+          <button class="key" data-key=".">.</button>
+          <button class="key eq" data-key="=">=</button>
+        </div>
+
+        <p class="kbd-hint">⌨️ Keyboard works — digits, + − × ÷ ^ ( ) % · Enter = · Backspace · Esc clears</p>
+      </section>
+
+      <!-- ============ SIDE PANEL ============ -->
+      <aside class="side glass" aria-label="History and AI assistant">
+        <div class="tabs" role="tablist">
+          <button class="tab active" data-tab="history" role="tab">
+            🕘 History <span id="histCount" class="count">0</span>
+          </button>
+          <button class="tab" data-tab="ai" role="tab">✨ AI Assistant</button>
+        </div>
+
+        <!-- History panel -->
+        <div class="tab-panel" id="panel-history">
+          <div class="panel-head">
+            <p>Tap any calculation to reuse it</p>
+            <button id="clearHistory" class="ghost-btn">Clear all</button>
+          </div>
+          <ul id="historyList" class="history-list"></ul>
+          <div id="historyEmpty" class="empty-state">
+            <div class="empty-icon">🧮</div>
+            <p>No calculations yet</p>
+            <span>Your history will appear here — saved even after refresh.</span>
+          </div>
+        </div>
+
+        <!-- AI panel -->
+        <div class="tab-panel hidden" id="panel-ai">
+          <div id="chat" class="chat" aria-live="polite"></div>
+          <div id="chips" class="chips"></div>
+          <form id="aiForm" class="ai-form" autocomplete="off">
+            <input id="aiInput" type="text" placeholder="Ask Nova… e.g. 15% of 240 or solve 3x+7=25" />
+            <button type="submit" class="send-btn" aria-label="Send">
+              <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 2 11 13M22 2l-7 20-4-9-9-4 20-7z"/>
+              </svg>
+            </button>
+          </form>
+        </div>
+      </aside>
+    </main>
+  </div>
+
+  <div id="toast" class="toast"></div>
+
+  <!-- Separated JavaScript -->
+  <script src="script.js"></script>
+</body>
+</html>
