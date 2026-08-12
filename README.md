@@ -15,4 +15,4 @@ CalcMind is a modern AI-powered calculator built with HTML, CSS, and JavaScript.
 - `script.js` - logic
 
 ## Run
-Open 
+Open https://anithaamaravadi.github.io/Calmind-AI/
