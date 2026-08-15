@@ -8,7 +8,7 @@ CalcMind is a modern AI-powered calculator built with HTML, CSS, and JavaScript.
 - Calculation history
 - Keyboard support
 - Dark glassmorphism UI
-
+ 
 ## Files
 - `index.html` - structure
 - `style.css` - styling
